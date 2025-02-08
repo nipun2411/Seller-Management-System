@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { AlertCircle, CheckCircle2, Pencil, Trash, Plus } from 'lucide-react';
-import Papa from 'papaparse';
+import { AlertCircle, CheckCircle2, Pencil, Trash } from 'lucide-react';
 
 const SellerManagement = () => {
   interface Seller {
@@ -15,7 +14,7 @@ const SellerManagement = () => {
     address: string;
   }
   
-  const [sellers, setSellers] = useState<any>([]);
+  const [sellers, setSellers] = useState<Seller[]>([]);
   const [editingSeller, setEditingSeller] = useState<Seller | null>(null);
   const [newSeller, setNewSeller] = useState({
     name: '',
@@ -73,7 +72,7 @@ const SellerManagement = () => {
   const handleUpdateSeller = () => {
     if (!editingSeller) return;
 
-    const updatedSellers = sellers.map(seller => 
+    const updatedSellers = sellers.map((seller: Seller) => 
       seller.id === editingSeller.id ? editingSeller : seller
     );  
     setSellers(updatedSellers);
